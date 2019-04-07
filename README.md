@@ -1,6 +1,8 @@
+
 # esx_poolcleaner
 
-Modified Pool Cleaner Job script for ESX. Originally by https://github.com/Cha0sNighT
+A modified version of the FiveM script "ESX_Poolcleaner" by Cha0sNighT
+https://github.com/Cha0sNighT/esx_poolcleaner
 
 # Getting Started
 
