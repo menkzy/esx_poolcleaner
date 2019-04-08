@@ -494,7 +494,7 @@ Citizen.CreateThread(function()
 			else
 				local playerPed = GetPlayerPed(-1)
 
-				if IsPedInAnyVehicle(playerPed,  false) and IsVehicleModel(GetVehiclePedIsIn(playerPed,  false), GetHashKey("utillitruck3")) then
+				if IsPedInAnyVehicle(playerPed,  false) and IsVehicleModel(GetVehiclePedIsIn(playerPed,  false), GetHashKey("bison3")) then
 					StartNPCJob()
 					Onjob = true
 				else

@@ -7,14 +7,14 @@ Config.Locale                     = 'en'
 
 Config.Blip = {
 	Sprite = 389,
-	Color = 5
+	Color = 3
 }
 
 Config.Vehicles = {
 	Truck = {
 		Spawner = 1,
 		Label = 'Cleaner Utility',
-		Hash = "utillitruck3",
+		Hash = "bison3",
 		Livery = 0,
 		Trailer = "none",
 	}
