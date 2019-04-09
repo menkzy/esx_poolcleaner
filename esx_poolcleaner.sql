@@ -5,4 +5,4 @@ INSERT INTO `job_grades` (`job_name`, `grade`, `name`, `label`, `salary`, `skin_
 ('poolcleaner', 0, 'interim', 'Cleaner', 400, '{}', '{}');
 
 INSERT INTO `items` (`name`, `label`, `limit`, `rare`, `can_remove`) VALUES
-('poolticket', 'Receipt', 15, 0, 1);
+('poolreceipt', 'Receipt', 15, 0, 1);
