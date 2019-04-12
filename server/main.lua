@@ -10,17 +10,19 @@ AddEventHandler('esx_poolcleaner:GiveItem', function()
 
 	local Quantity = xPlayer.getInventoryItem(Config.Zones.Sale.ItemRequires).count
 
-	if Quantity >= 20 then
+
+
+	if Quantity >= 15 then
+		
 		TriggerClientEvent('esx:showNotification', _source, _U('stop_npc'))
-		return
 	else
 		local amount = Config.Zones.Sale.ItemAdd
 		local item = Config.Zones.Sale.ItemDb_name
 		xPlayer.addInventoryItem(item, amount)
 		TriggerClientEvent('esx:showNotification', _source, 'You have cleaned the pool.')
 	end
-
-end)
+end
+)
 
 local function Sale(source)
 

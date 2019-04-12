@@ -277,7 +277,10 @@ AddEventHandler('esx_poolcleaner:hasEnteredMarker', function(zone)
 		CurrentActionMsg     = Config.Zones.Sale.hint
 		CurrentActionData    = {}
 	end
-end)
+end
+
+
+)
 
 -- Quand le joueur sort de la zone
 AddEventHandler('esx_poolcleaner:hasExitedMarker', function(zone)
@@ -353,7 +356,7 @@ function CreateBlip()
 	end
 end
 
--- Activation du marker au sol
+-- Activation of the marker on the ground
 Citizen.CreateThread(function()
 	while true do
 		Wait(0)
