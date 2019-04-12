@@ -23,10 +23,10 @@ Config.Vehicles = {
 Config.Zones = {
 
 	Cloakroom = {
-		Pos     = {x = -1321.71, y = -1263.81, z = 4.59},
+		Pos     = {x = -1320.2412109375, y = -1263.4998779297, z = 4.587522983551},
 		Size    = {x = 1.5, y = 1.5, z = 0.6},
 		Color   = {r = 11, g = 203, b = 159},
-		Type    = 27,
+		Type    = 21, Rotate = true,
 		BlipSprite = 267,
 		BlipColor = 3,
 		BlipName = Config.nameJobLabel.." : Cloakroom",
@@ -34,10 +34,10 @@ Config.Zones = {
 	},
 
 	VehicleSpawner = {
-		Pos   = {x = -1318.12, y = -1250.73, z = 3.59},
+		Pos   = {x = -1320.0230712891, y = -1251.2257080078, z = 4.5960249900818},
 		Size  = {x = 1.5, y = 1.5, z = 0.6},
 		Color = {r = 11, g = 203, b = 159},
-		Type  = 27,
+		Type  = 36, Rotate = true,
 		BlipSprite = 85,
 		BlipColor = 3,
 		BlipName = Config.nameJobLabel.." : Vehicles",
@@ -52,10 +52,10 @@ Config.Zones = {
 	},
 
 	VehicleDeleter = {
-		Pos   = {x = -1319.64, y = -1240.94, z = 3.6},
-		Size  = {x = 3.0, y = 3.0, z = 0.9},
+		Pos   = {x = -1310.6691894531, y = -1242.0057373047, z = 4.7231316566467},
+		Size  = {x = 3.0, y = 3.0, z = 1},
 		Color = {r = 255, g = 0, b = 0},
-		Type  = 27,
+		Type  = 36, Rotate = true,
 		BlipSprite = 380,
 		BlipColor = 1,
 		BlipName = Config.nameJobLabel.." : Return Vehicle",
@@ -63,10 +63,10 @@ Config.Zones = {
 	},
 
 	Sale = {
-		Pos   = {x = -1301.31, y = -1264.78, z = 3.32},
-		Size  = {x = 10.0, y = 10.0, z = 0.8},
+		Pos   = {x = -1311.6273193359, y = -1262.6885986328, z =  4.5575785636902},
+		Size  = {x = 1.0, y = 3.0, z = 0.8},
 		Color = {r = 11, g = 203, b = 159},
-		Type  = 27,
+		Type  = 29, Rotate = true,
 		BlipSprite = 375,
 		BlipColor = 3,
 		BlipName = Config.nameJobLabel.." : Depot",
