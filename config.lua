@@ -14,8 +14,8 @@ Config.Vehicles = {
 	Truck = {
 		Spawner = 1,
 		Label = 'Cleaner Utility',
-		Hash = "bison3",
-		Livery = 0,
+		Hash = "bison5",
+		Livery = 1,
 		Trailer = "none",
 	}
 }

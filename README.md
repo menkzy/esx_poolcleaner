@@ -14,5 +14,8 @@ https://github.com/Cha0sNighT/esx_poolcleaner
 
 1. Configuration only in config.lua
 
-Thanks to Anthony for esx_garbage, wich is the base of all of this.
+Thanks to Anthony for esx_garbage, which is the base of all of this.
 https://github.com/AnthonyEl
+
+
+Updated bison is created by glennoconnell - https://www.gta5-mods.com/vehicles/updated-bravado-bison-low-end-construction-version-replace/
