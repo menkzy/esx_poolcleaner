@@ -6,6 +6,7 @@ version '1.1'
 
 client_scripts {
 	'@es_extended/locale.lua',
+	'locales/tr.lua',
 	'locales/en.lua',
 	'locales/fr.lua',
 	'client/main.lua',
@@ -23,6 +24,7 @@ data_file 'VEHICLE_VARIATION_FILE' 'carvariations.meta'
 
 server_scripts {
 	'@es_extended/locale.lua',
+	'locales/tr.lua',
 	'locales/en.lua',
 	'locales/fr.lua',
 	'server/main.lua',
