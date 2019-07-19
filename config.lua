@@ -52,10 +52,10 @@ Config.Zones = {
 	},
 
 	VehicleDeleter = {
-		Pos   = {x = -1310.6691894531, y = -1242.0057373047, z = 4.7231316566467},
+		Pos   = {x = -1310.6691894531, y = -1242.0057373047, z = 3.7231316566467},
 		Size  = {x = 3.0, y = 3.0, z = 1},
 		Color = {r = 255, g = 0, b = 0},
-		Type  = 36, Rotate = true,
+		Type  = 27, Rotate = false,
 		BlipSprite = 380,
 		BlipColor = 1,
 		BlipName = Config.nameJobLabel.." : Return Vehicle",
@@ -63,10 +63,10 @@ Config.Zones = {
 	},
 
 	Sale = {
-		Pos   = {x = -1311.6273193359, y = -1262.6885986328, z =  4.5575785636902},
-		Size  = {x = 1.0, y = 3.0, z = 0.8},
+		Pos   = {x = -1311.6273193359, y = -1262.6885986328, z =  3.5575785636902},
+		Size  = {x = 3.5, y = 3.5, z = 0.6},
 		Color = {r = 11, g = 203, b = 159},
-		Type  = 29, Rotate = true,
+		Type  = 27, Rotate = true,
 		BlipSprite = 375,
 		BlipColor = 3,
 		BlipName = Config.nameJobLabel.." : Depot",
