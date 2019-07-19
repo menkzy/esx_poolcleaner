@@ -61,6 +61,7 @@ function SelectPool()
 end
 
 function StartNPCJob()
+
 	NPCTargetPool     = SelectPool()
 	local zone            = Config.Zones[NPCTargetPool]
 
@@ -68,6 +69,8 @@ function StartNPCJob()
 	SetBlipRoute(Blips['NPCTargetPool'], true)
 	ESX.ShowNotification(_U('GPS_info'))
 	Done = true
+	Onjob = true
+
 end
 
 function StopNPCJob(cancel)
@@ -86,6 +89,8 @@ function StopNPCJob(cancel)
 		StartNPCJob()
 		Done = true
 	end
+
+
 end
 
 Citizen.CreateThread(function()
@@ -116,7 +121,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
--- Prise de service
+-- Start work / finish work
 function CloakRoomMenu()
 
 	local elements = {}
@@ -169,6 +174,16 @@ function CloakRoomMenu()
 					ClearPedBloodDamage(playerPed)
 					ResetPedVisibleDamage(playerPed)
 					ClearPedLastWeaponDamage(playerPed)
+
+					
+					if Onjob then
+						StopNPCJob(true)
+						RemoveBlip(Blips['NPCTargetPool'])
+						Onjob = false
+					end
+
+
+
 				end)
 			end
 
@@ -185,6 +200,9 @@ function CloakRoomMenu()
 				ClearPedBloodDamage(playerPed)
 				ResetPedVisibleDamage(playerPed)
 				ClearPedLastWeaponDamage(playerPed)
+
+				StartNPCJob()
+				Onjob = true
 			end
 
 			CurrentAction     = 'cloakroom_menu'
@@ -203,7 +221,7 @@ function CloakRoomMenu()
 
 end
 
--- Prise du véhicule
+-- Spawn your work vehicle
 function VehicleMenu()
 
 	local elements = {
@@ -248,7 +266,7 @@ function VehicleMenu()
 		)
 end
 
--- Quand le joueur entre dans la zone
+-- What happens if the player enters the zone?
 AddEventHandler('esx_poolcleaner:hasEnteredMarker', function(zone)
 
 	if zone == 'Cloakroom' then
@@ -282,7 +300,7 @@ end
 
 )
 
--- Quand le joueur sort de la zone
+-- What happens when the player leaves the zone...
 AddEventHandler('esx_poolcleaner:hasExitedMarker', function(zone)
 
 	if zone == 'Sale' then
@@ -385,7 +403,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
--- Detection de l'entrer/sortie de la zone du joueur
+-- Are we in a marker?
 Citizen.CreateThread(function()
 	while true do
 		Wait(1)
@@ -426,65 +444,69 @@ Citizen.CreateThread(function()
 	end
 end)
 
--- Action après la demande d'accés
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if CurrentAction ~= nil then
-			SetTextComponentFormat('STRING')
-			AddTextComponentString(CurrentActionMsg)
-			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
-			if (IsControlJustReleased(1, Keys["E"]) or IsControlJustReleased(2, Keys["RIGHT"])) and PlayerData.job ~= nil then
-				local playerPed = GetPlayerPed(-1)
-				if PlayerData.job.name == Config.nameJob then
-					if CurrentAction == 'cloakroom_menu' then
-						if IsPedInAnyVehicle(playerPed, 0) then
-							ESX.ShowNotification(_U('in_vehicle'))
-						else
-							CloakRoomMenu()
-						end
-					end
-					if CurrentAction == 'vehiclespawn_menu' then
-						if IsPedInAnyVehicle(playerPed, 0) then
-							ESX.ShowNotification(_U('in_vehicle'))
-						else
-							VehicleMenu()
-						end
-					end
-					if CurrentAction == 'Sale' then
-						TriggerServerEvent('esx_poolcleaner:startSale')
-					end
-					if CurrentAction == 'delete_vehicle' then
-						local playerPed = GetPlayerPed(-1)
-						local vehicle   = GetVehiclePedIsIn(playerPed,  false)
-						local hash      = GetEntityModel(vehicle)
-						local plate = GetVehicleNumberPlateText(vehicle)
-						local plate = string.gsub(plate, " ", "")
-						local platePrefix = Config.platePrefix
-
-						if string.find (plate, platePrefix) then
-							local truck = Config.Vehicles.Truck
-
-							if hash == GetHashKey(truck.Hash) then
-								if GetVehicleEngineHealth(vehicle) <= 500 or GetVehicleBodyHealth(vehicle) <= 500 then
-									ESX.ShowNotification(_U('vehicle_broken'))
-								else
-									TriggerServerEvent('esx_vehiclelock:vehjobSup', plate, 'no')
-									DeleteVehicle(vehicle)
-								end
+-- Things to do after pressing E at a blip.
+	Citizen.CreateThread(function()
+		while true do
+			Citizen.Wait(0)
+			if CurrentAction ~= nil then
+				SetTextComponentFormat('STRING')
+				AddTextComponentString(CurrentActionMsg)
+				DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+				if (IsControlJustReleased(1, Keys["E"]) or IsControlJustReleased(2, Keys["RIGHT"])) and PlayerData.job ~= nil then
+					local playerPed = GetPlayerPed(-1)
+					if PlayerData.job.name == Config.nameJob then
+						if CurrentAction == 'cloakroom_menu' then
+							if IsPedInAnyVehicle(playerPed, 0) then
+								ESX.ShowNotification(_U('in_vehicle'))
+							else
+								CloakRoomMenu()
 							end
-						else
-							ESX.ShowNotification(_U('bad_vehicle'))
 						end
+						if CurrentAction == 'vehiclespawn_menu' then
+							if IsPedInAnyVehicle(playerPed, 0) then
+								ESX.ShowNotification(_U('in_vehicle'))
+							else
+								VehicleMenu()
+							end
+						end
+						if CurrentAction == 'Sale' then
+							TriggerServerEvent('esx_poolcleaner:startSale')
+						end
+						if CurrentAction == 'delete_vehicle' then
+							local playerPed = GetPlayerPed(-1)
+							local vehicle   = GetVehiclePedIsIn(playerPed,  false)
+							local hash      = GetEntityModel(vehicle)
+							local plate = GetVehicleNumberPlateText(vehicle)
+							local plate = string.gsub(plate, " ", "")
+							local platePrefix = Config.platePrefix
+
+							if string.find (plate, platePrefix) then
+								local truck = Config.Vehicles.Truck
+
+								if hash == GetHashKey(truck.Hash) then
+									if GetVehicleEngineHealth(vehicle) <= 500 or GetVehicleBodyHealth(vehicle) <= 500 then
+										ESX.ShowNotification(_U('vehicle_broken'))
+									else
+										TriggerServerEvent('esx_vehiclelock:vehjobSup', plate, 'no')
+										DeleteVehicle(vehicle)
+									end
+								end
+							else
+								ESX.ShowNotification(_U('bad_vehicle'))
+							end
+						end
+						CurrentAction = nil
 					end
-					CurrentAction = nil
 				end
 			end
 		end
-	end
-end)
+	end)
 
-Citizen.CreateThread(function()
+--[[
+Disabled but left in here in case people want it.
+
+
+ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
@@ -506,7 +528,7 @@ Citizen.CreateThread(function()
 			end
 		end
 	end
-end)
+end) --]]
 
 function setUniform(job, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
