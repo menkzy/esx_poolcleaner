@@ -86,9 +86,6 @@ Config.Zones = {
 
 }
 
-Config.Pool = {
-
-}
 
 for i=1, #Config.Pool, 1 do
 

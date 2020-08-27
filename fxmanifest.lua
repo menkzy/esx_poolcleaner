@@ -13,6 +13,7 @@ client_scripts {
 	'locales/fr.lua',
 	'client/main.lua',
 	'config.lua',
+	'coords.lua',
 	'vehicles.meta',
 	'carvariations.meta',
 	'carcols.meta',
@@ -28,5 +29,6 @@ server_scripts {
 	'locales/en.lua',
 	'locales/fr.lua',
 	'server/main.lua',
-	'config.lua'
+	'config.lua',
+	'coords.lua'
 }
