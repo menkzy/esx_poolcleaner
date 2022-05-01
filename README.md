@@ -1,4 +1,6 @@
 
+# THIS SCRIPT IS OUTDATED AND NO LONGER MAINTAINED
+
 # esx_poolcleaner
 
 A modified version of the FiveM script "ESX_Poolcleaner" by Cha0sNighT
